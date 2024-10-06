@@ -1,0 +1,117 @@
+<!-- In dashboard/index.html -->
+{% load crispy_forms_tags %}
+<div>
+    <div class="row mt-4">
+        <!-- Filtering and order form HTML here as provided previously -->
+        <div>
+            <form method="GET" action="{% url 'dashboard-index' %}">
+                <!-- Cascading Dropdowns -->
+                <select name="zone_name">
+                    <option value="">Select Zone</option>
+                    {% for zone in zones %}
+                        <option value="{{ zone.name }}">{{ zone.name }}</option>
+                    {% endfor %}
+                </select>
+        
+                <select name="zone_district">
+                    <option value="">Select District</option>
+                </select>
+        
+                <select name="zone_thana">
+                    <option value="">Select Thana</option>
+                </select>
+        
+                <select name="zone_area">
+                    <option value="">Select Area</option>
+                </select>
+        
+                <button type="submit">Search</button>
+            </form>
+        
+            {% if shops %}
+                <h2>Shop Details</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <select name="selected_shop">
+                        <option value="">Select Shop</option>
+                        {% for shop in shops %}
+                            <option value="{{ shop.id }}">{{ shop.shop_name }} - {{ shop.shop_owner }}</option>
+                        {% endfor %}
+                    </select>
+                    {{ form|crispy }}
+                    <input class="btn btn-info btn-block" type="submit" value="Make Request">
+                </form>
+            {% endif %}
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const zoneDropdown = document.querySelector("select[name='zone_name']");
+        const districtDropdown = document.querySelector("select[name='zone_district']");
+        const thanaDropdown = document.querySelector("select[name='zone_thana']");
+        const areaDropdown = document.querySelector("select[name='zone_area']");
+
+        // When a zone is selected, get districts
+        zoneDropdown.addEventListener("change", function () {
+            const zoneName = zoneDropdown.value;
+            if (zoneName) {
+                fetch(`/get-districts/?zone_name=${zoneName}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        districtDropdown.innerHTML = '<option value="">Select District</option>';
+                        thanaDropdown.innerHTML = '<option value="">Select Thana</option>';
+                        areaDropdown.innerHTML = '<option value="">Select Area</option>';
+
+                        data.districts.forEach(district => {
+                            districtDropdown.innerHTML += `<option value="${district}">${district}</option>`;
+                        });
+                    });
+            } else {
+                districtDropdown.innerHTML = '<option value="">Select District</option>';
+                thanaDropdown.innerHTML = '<option value="">Select Thana</option>';
+                areaDropdown.innerHTML = '<option value="">Select Area</option>';
+            }
+        });
+
+        // When a district is selected, get thanas
+        districtDropdown.addEventListener("change", function () {
+            const districtName = districtDropdown.value;
+            if (districtName) {
+                fetch(`/get-thanas/?district_name=${districtName}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        thanaDropdown.innerHTML = '<option value="">Select Thana</option>';
+                        areaDropdown.innerHTML = '<option value="">Select Area</option>';
+
+                        data.thanas.forEach(thana => {
+                            thanaDropdown.innerHTML += `<option value="${thana}">${thana}</option>`;
+                        });
+                    });
+            } else {
+                thanaDropdown.innerHTML = '<option value="">Select Thana</option>';
+                areaDropdown.innerHTML = '<option value="">Select Area</option>';
+            }
+        });
+
+        // When a thana is selected, get areas
+        thanaDropdown.addEventListener("change", function () {
+            const thanaName = thanaDropdown.value;
+            if (thanaName) {
+                fetch(`/get-areas/?thana_name=${thanaName}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        areaDropdown.innerHTML = '<option value="">Select Area</option>';
+
+                        data.areas.forEach(area => {
+                            areaDropdown.innerHTML += `<option value="${area}">${area}</option>`;
+                        });
+                    });
+            } else {
+                areaDropdown.innerHTML = '<option value="">Select Area</option>';
+            }
+        });
+    });
+</script>
