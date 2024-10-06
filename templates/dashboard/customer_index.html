@@ -1,49 +1,84 @@
-<!-- In dashboard/index.html -->
 {% load crispy_forms_tags %}
-<div>
+<div class="container">
     <div class="row mt-4">
-        <!-- Filtering and order form HTML here as provided previously -->
-        <div>
-            <form method="GET" action="{% url 'dashboard-index' %}">
-                <!-- Cascading Dropdowns -->
-                <select name="zone_name">
-                    <option value="">Select Zone</option>
-                    {% for zone in zones %}
-                        <option value="{{ zone.name }}">{{ zone.name }}</option>
-                    {% endfor %}
-                </select>
-        
-                <select name="zone_district">
-                    <option value="">Select District</option>
-                </select>
-        
-                <select name="zone_thana">
-                    <option value="">Select Thana</option>
-                </select>
-        
-                <select name="zone_area">
-                    <option value="">Select Area</option>
-                </select>
-        
-                <button type="submit">Search</button>
+        <div class="col-12">
+            <form method="GET" action="{% url 'dashboard-index' %}" class="mb-4">
+                <div class="row">
+                    <!-- Cascading Dropdowns -->
+                    <div class="col-12 col-md-3 mb-2">
+                        <select name="zone_name" class="form-control">
+                            <option value="">Select Zone</option>
+                            {% for zone in zones %}
+                                <option value="{{ zone.name }}">{{ zone.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3 mb-2">
+                        <select name="zone_district" class="form-control">
+                            <option value="">Select District</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3 mb-2">
+                        <select name="zone_thana" class="form-control">
+                            <option value="">Select Thana</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3 mb-2">
+                        <select name="zone_area" class="form-control">
+                            <option value="">Select Area</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Search</button>
             </form>
-        
+
             {% if shops %}
                 <h2>Shop Details</h2>
                 <form method="POST">
                     {% csrf_token %}
-                    <select name="selected_shop">
+                    <select name="selected_shop" class="form-control mb-2">
                         <option value="">Select Shop</option>
                         {% for shop in shops %}
-                            <option value="{{ shop.id }}">{{ shop.shop_name }} - {{ shop.shop_owner }}</option>
+                            <option value="{{ shop.id }}" {% if selected_shop and selected_shop.id == shop.id %}selected{% endif %}>{{ shop.shop_name }} - {{ shop.shop_owner }}</option>
                         {% endfor %}
                     </select>
                     {{ form|crispy }}
                     <input class="btn btn-info btn-block" type="submit" value="Make Request">
                 </form>
             {% endif %}
+
+            {% if shop_orders.exists %}
+                <h3>Orders for {{ selected_shop.shop_name }}</h3>
+                <table class="table bg-white table-responsive">
+                    <thead class="bg-info text-white">
+                        <tr>
+                            <th scope="col">Shop Name</th>
+                            <th scope="col">Area</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Order By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in shop_orders %}
+                            <tr>
+                                <td>{{ order.shop }}</td>
+                                <td>{{ order.shop.zone.area }}</td>
+                                <td>{{ order.name.name }}</td>
+                                <td>{{ order.order_quantity }}</td>
+                                <td>{{ order.customer }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No orders found for this shop.</p>
+            {% endif %}
         </div>
-        
     </div>
 </div>
 

@@ -19,13 +19,11 @@ def index(request):
 
     zones = Zone.objects.all()
     shops = None
+    selected_shop = None
+    shop_orders = None
+    form = OrderForm()
 
-    # Initialize the variables to None to avoid UnboundLocalError
-    zone_name = None
-    zone_district = None
-    zone_thana = None
-    zone_area = None
-
+    # Handle GET request for filtering shops based on zone criteria
     if request.method == 'GET':
         zone_name = request.GET.get('zone_name')
         zone_district = request.GET.get('zone_district')
@@ -43,6 +41,16 @@ def index(request):
             shops = Shop.objects.filter(zone__in=filtered_zones)
             print(shops)
 
+        # Retrieve selected shop from session if available
+        if 'selected_shop_id' in request.session:
+            try:
+                selected_shop = Shop.objects.get(id=request.session['selected_shop_id'])
+                shop_orders = Order.objects.filter(shop=selected_shop, customer=request.user)
+            except Shop.DoesNotExist:
+                selected_shop = None
+                shop_orders = None
+
+    # Handle POST request for placing orders
     if request.method == 'POST':
         form = OrderForm(request.POST)
         selected_shop_id = request.POST.get('selected_shop')
@@ -50,10 +58,12 @@ def index(request):
         if selected_shop_id:
             try:
                 selected_shop = Shop.objects.get(id=selected_shop_id)
+                shop_orders = Order.objects.filter(shop=selected_shop, customer=request.user)
+                request.session['selected_shop_id'] = selected_shop_id  # Store in session
+                print(selected_shop)  # Test output
+                print(shop_orders)    # Test output
             except Shop.DoesNotExist:
                 selected_shop = None
-        else:
-            selected_shop = None
 
         if form.is_valid() and selected_shop:
             obj = form.save(commit=False)
@@ -61,8 +71,6 @@ def index(request):
             obj.shop = selected_shop  # Assign the selected shop to the order
             obj.save()
             return redirect('dashboard-index')
-    else:
-        form = OrderForm()
 
     context = {
         'form': form,
@@ -73,7 +81,12 @@ def index(request):
         'customer_count': customer_count,
         'zones': zones,
         'shops': shops,
+        'selected_shop': selected_shop,
+        'shop_orders': shop_orders,
     }
+    print(selected_shop)  # Test output
+    print(shop_orders)    # Test output
+
     return render(request, 'dashboard/index.html', context)
 
 
