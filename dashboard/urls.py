@@ -20,9 +20,6 @@ urlpatterns = [
 
 
 
-
-
-
     path('get-districts/', views.get_districts, name='get-districts'),
     path('get-thanas/', views.get_thanas, name='get-thanas'),
     path('get-areas/', views.get_areas, name='get-areas'),

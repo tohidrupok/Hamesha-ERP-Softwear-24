@@ -39,7 +39,7 @@ def index(request):
                 area=zone_area
             )
             shops = Shop.objects.filter(zone__in=filtered_zones)
-            print(shops)
+            
 
         # Retrieve selected shop from session if available
         if 'selected_shop_id' in request.session:
@@ -60,8 +60,8 @@ def index(request):
                 selected_shop = Shop.objects.get(id=selected_shop_id)
                 shop_orders = Order.objects.filter(shop=selected_shop, customer=request.user)
                 request.session['selected_shop_id'] = selected_shop_id  # Store in session
-                print(selected_shop)  # Test output
-                print(shop_orders)    # Test output
+                # print(selected_shop)  # Test output
+                # print(shop_orders)    # Test output
             except Shop.DoesNotExist:
                 selected_shop = None
 
@@ -84,8 +84,8 @@ def index(request):
         'selected_shop': selected_shop,
         'shop_orders': shop_orders,
     }
-    print(selected_shop)  # Test output
-    print(shop_orders)    # Test output
+    # print(selected_shop)  # Test output
+    # print(shop_orders)    # Test output
 
     return render(request, 'dashboard/index.html', context)
 
@@ -173,7 +173,7 @@ def customers(request):
         'customer_count': customer_count,
         'product_count': product_count,
         'order_count': order_count,
-    }
+    } 
     return render(request, 'dashboard/customers.html', context)
 
 
