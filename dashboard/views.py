@@ -17,7 +17,7 @@ def index(request):
     customer = User.objects.filter(groups=2)
     customer_count = customer.count()
 
-    zones = Zone.objects.all()
+    zones = Zone.objects.values('name').distinct()
     shops = None
     selected_shop = None
     shop_orders = None
@@ -68,7 +68,7 @@ def index(request):
         if form.is_valid() and selected_shop:
             obj = form.save(commit=False)
             obj.customer = request.user
-            obj.shop = selected_shop  # Assign the selected shop to the order
+            obj.shop = selected_shop  
             obj.save()
             return redirect('dashboard-index')
 
@@ -90,7 +90,7 @@ def index(request):
     return render(request, 'dashboard/index.html', context)
 
 
-# In views.py
+
 from django.http import JsonResponse
 
 def get_districts(request):

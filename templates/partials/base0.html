@@ -1,29 +1,38 @@
 <!doctype html>
 <html lang="en">
-
+{% load static %}
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--favicon-->
-	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
-	<!--plugins-->
-	<link href="assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css" rel="stylesheet" />
-	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-	<link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
-	<!-- loader-->
-	<link href="assets/css/pace.min.css" rel="stylesheet" />
-	<script src="assets/js/pace.min.js"></script>
+	<!-- favicon -->
+	<link rel="icon" href="{% static 'images/favicon-32x32.png' %}" type="image/png" />
+	<!-- plugins -->
+	<link href="{% static 'assets/plugins/vectormap/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet"/>
+	<link href="{% static 'assets/plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet" />
+	<link href="{% static 'assets/plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet" />
+	<!-- loader -->
+	<link href="{% static 'assets/css/pace.min.css' %}" rel="stylesheet" />
+	<script src="{% static 'assets/js/pace.min.js' %}"></script>
 	<!-- Bootstrap CSS -->
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="assets/css/app.css" rel="stylesheet">
-	<link href="assets/css/icons.css" rel="stylesheet">
+	<link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/css/app.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/css/icons.css' %}" rel="stylesheet">
 	<!-- Theme Style CSS -->
-	<link rel="stylesheet" href="assets/css/dark-theme.css" />
-	<link rel="stylesheet" href="assets/css/semi-dark.css" />
-	<link rel="stylesheet" href="assets/css/header-colors.css" />
-	<title>Rukada - Responsive Bootstrap 5 Admin Template</title>
+	<link rel="stylesheet" href="{% static 'assets/css/dark-theme.css' %}" />
+	<link rel="stylesheet" href="{% static 'assets/css/semi-dark.css' %}" />
+	<link rel="stylesheet" href="{% static 'assets/css/header-colors.css' %}" />
+
+{% comment %} Header for index  {% endcomment %}           
+
+	<!--FontAwesome CDN-->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+        integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <!--Chartjs CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <title>Hamesha Inventory Management System</title>
+
 </head>
 
 <body>
@@ -33,11 +42,9 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+					<img src="{% static 'assets/images/logo.png' %}" class="logo-icon" alt="logo icon" style="width: 110px; height: 70;">
 				</div>
-				<div>
-					<h4 class="logo-text">Rukada</h4>
-				</div>
+				
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
 				</div>
 			</div>
@@ -362,6 +369,7 @@
 		<!--end sidebar wrapper -->
 		<!--start header -->
 		<header>
+			
 			<div class="topbar d-flex align-items-center">
 				<nav class="navbar navbar-expand">
 					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
@@ -548,7 +556,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-1.png" class="msg-avatar" alt="user avatar">
+													<img src="{% static 'assets/images/avatars/avatar-1.png' %}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Daisy Anderson <span class="msg-time float-end">5 sec
@@ -560,7 +568,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-2.png" class="msg-avatar" alt="user avatar">
+													<img src="{% static 'assets/images/avatars/avatar-2.png' %}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Althea Cabardo <span class="msg-time float-end">14
@@ -572,7 +580,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-3.png" class="msg-avatar" alt="user avatar">
+													<img src="{% static 'assets/images/avatars/avatar-3.png' %}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Oscar Garner <span class="msg-time float-end">8 min
@@ -584,7 +592,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-4.png" class="msg-avatar" alt="user avatar">
+													<img src="{% static 'assets/images/avatars/avatar-4.png' %}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Katherine Pechon <span class="msg-time float-end">15
@@ -596,7 +604,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-5.png" class="msg-avatar" alt="user avatar">
+													<img src="{% static 'assets/images/avatars/avatar-5.png' %}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Amelia Doe <span class="msg-time float-end">22 min
@@ -608,7 +616,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-6.png" class="msg-avatar" alt="user avatar">
+													<img src="{% static 'assets/images/avatars/avatar-6.png' %}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Cristina Jhons <span class="msg-time float-end">2 hrs
@@ -620,7 +628,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-7.png" class="msg-avatar" alt="user avatar">
+													<img src="{% static 'assets/images/avatars/avatar-7.png' %}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">James Caviness <span class="msg-time float-end">4 hrs
@@ -632,7 +640,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-8.png" class="msg-avatar" alt="user avatar">
+													<img src="{% static 'assets/images/avatars/avatar-8.png' %}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Peter Costanzo <span class="msg-time float-end">6 hrs
@@ -644,7 +652,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-9.png" class="msg-avatar" alt="user avatar">
+													<img src="{% static 'assets/images/avatars/avatar-9.png' %}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">David Buckley <span class="msg-time float-end">2 hrs
@@ -656,7 +664,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-10.png" class="msg-avatar" alt="user avatar">
+													<img src="{% static 'assets/images/avatars/avatar-10.png' %}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Thomas Wheeler <span class="msg-time float-end">2 days
@@ -668,7 +676,7 @@
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center">
 												<div class="user-online">
-													<img src="assets/images/avatars/avatar-11.png" class="msg-avatar" alt="user avatar">
+													<img src="{% static 'assets/images/avatars/avatar-11.png' %}" class="msg-avatar" alt="user avatar">
 												</div>
 												<div class="flex-grow-1">
 													<h6 class="msg-name">Johnny Seitz <span class="msg-time float-end">5 days
@@ -687,14 +695,14 @@
 					</div>
 					<div class="user-box dropdown">
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+							<img src="{% static 'assets/images/avatars/avatar-2.png' %}" class="user-img" alt="user avatar">
 							<div class="user-info ps-3">
-								<p class="user-name mb-0">Pauline Seitz</p>
-								<p class="designattion mb-0">Web Designer</p>
+								<p class="user-name mb-0">Tohid Rupok</p>
+								<p class="designattion mb-0">Sales representative</p>
 							</div>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Profile</span></a>
+							<li><a class="dropdown-item" href="{% url 'user-profile' %}"><i class="bx bx-user"></i><span>Profile</span></a>
 							</li>
 							<li><a class="dropdown-item" href="javascript:;"><i class="bx bx-cog"></i><span>Settings</span></a>
 							</li>
@@ -707,7 +715,16 @@
 							<li>
 								<div class="dropdown-divider mb-0"></div>
 							</li>
-							<li><a class="dropdown-item" href="javascript:;"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
+						    <li>
+								<form method="POST" action="{% url 'user-logout' %}" style="display: inline;">
+									{% csrf_token %}
+									<button type="submit" class="dropdown-item" style="border: none; padding: 0; background: none; cursor: pointer;">
+										<i class='bx bx-log-out-circle'></i>
+										<span>Logout</span>
+									</button>
+								</form>
+							</li>
+							
 							</li>
 						</ul>
 					</div>
@@ -716,123 +733,9 @@
 		</header>
 		<!--end header -->
 		<!--start page wrapper -->
-		<div class="page-wrapper">
-			<div class="page-content">
+        {% block content %}
 
-				<!--breadcrumb-->
-				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">eCommerce</div>
-					<div class="ps-3">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb mb-0 p-0">
-								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-								</li>
-								<li class="breadcrumb-item active" aria-current="page">Add New Product</li>
-							</ol>
-						</nav>
-					</div>
-					<div class="ms-auto">
-						<div class="btn-group">
-							<button type="button" class="btn btn-primary">Settings</button>
-							<button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
-							</button>
-							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
-								<a class="dropdown-item" href="javascript:;">Another action</a>
-								<a class="dropdown-item" href="javascript:;">Something else here</a>
-								<div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--end breadcrumb-->
-
-              <div class="card">
-				  <div class="card-body p-4">
-					  <h5 class="card-title">Add New Product</h5>
-					  <hr/>
-                       <div class="form-body mt-4">
-					    <div class="row">
-						   <div class="col-lg-8">
-                           <div class="border border-3 p-4 rounded">
-							<div class="mb-3">
-								<label for="inputProductTitle" class="form-label">Product Title</label>
-								<input type="email" class="form-control" id="inputProductTitle" placeholder="Enter product title">
-							  </div>
-							  <div class="mb-3">
-								<label for="inputProductDescription" class="form-label">Description</label>
-								<textarea class="form-control" id="inputProductDescription" rows="3"></textarea>
-							  </div>
-							  <div class="mb-3">
-								<label for="inputProductDescription" class="form-label">Product Images</label>
-								<input id="image-uploadify" type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
-							  </div>
-                            </div>
-						   </div>
-						   <div class="col-lg-4">
-							<div class="border border-3 p-4 rounded">
-                              <div class="row g-3">
-								<div class="col-md-6">
-									<label for="inputPrice" class="form-label">Price</label>
-									<input type="email" class="form-control" id="inputPrice" placeholder="00.00">
-								  </div>
-								  <div class="col-md-6">
-									<label for="inputCompareatprice" class="form-label">Compare at Price</label>
-									<input type="password" class="form-control" id="inputCompareatprice" placeholder="00.00">
-								  </div>
-								  <div class="col-md-6">
-									<label for="inputCostPerPrice" class="form-label">Cost Per Price</label>
-									<input type="email" class="form-control" id="inputCostPerPrice" placeholder="00.00">
-								  </div>
-								  <div class="col-md-6">
-									<label for="inputStarPoints" class="form-label">Star Points</label>
-									<input type="password" class="form-control" id="inputStarPoints" placeholder="00.00">
-								  </div>
-								  <div class="col-12">
-									<label for="inputProductType" class="form-label">Product Type</label>
-									<select class="form-select" id="inputProductType">
-										<option></option>
-										<option value="1">One</option>
-										<option value="2">Two</option>
-										<option value="3">Three</option>
-									  </select>
-								  </div>
-								  <div class="col-12">
-									<label for="inputVendor" class="form-label">Vendor</label>
-									<select class="form-select" id="inputVendor">
-										<option></option>
-										<option value="1">One</option>
-										<option value="2">Two</option>
-										<option value="3">Three</option>
-									  </select>
-								  </div>
-								  <div class="col-12">
-									<label for="inputCollection" class="form-label">Collection</label>
-									<select class="form-select" id="inputCollection">
-										<option></option>
-										<option value="1">One</option>
-										<option value="2">Two</option>
-										<option value="3">Three</option>
-									  </select>
-								  </div>
-								  <div class="col-12">
-									<label for="inputProductTags" class="form-label">Product Tags</label>
-									<input type="text" class="form-control" id="inputProductTags" placeholder="Enter Product Tags">
-								  </div>
-								  <div class="col-12">
-									  <div class="d-grid">
-                                         <button type="button" class="btn btn-primary">Save Product</button>
-									  </div>
-								  </div>
-							  </div> 
-						  </div>
-						  </div>
-					   </div><!--end row-->
-					</div>
-				  </div>
-			  </div>
-
-			</div>
-		</div>
+        {% endblock %}
 		<!--end page wrapper -->
 		<!--start overlay-->
 		<div class="overlay toggle-icon"></div>
@@ -938,23 +841,53 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
-	<script src="assets/js/bootstrap.bundle.min.js"></script>
+	<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
 	<!--plugins-->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
-	<script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
-	<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-	<script src="assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
+	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/simplebar/js/simplebar.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/metismenu/js/metisMenu.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+	<script src="{% static 'assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js' %}"></script>
+	
 	<script>
 		$(document).ready(function () {
 			$('#image-uploadify').imageuploadify();
 		})
 	</script>
 	<!--app JS-->
-	<script src="assets/js/app.js"></script>
+	<script src="{% static 'assets/js/app.js' %}"></script>
+
+
+
+	<!--end switcher-->
+	<!-- Bootstrap JS -->
+	<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+	<!-- plugins -->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'plugins/simplebar/js/simplebar.min.js' %}"></script>
+	<script src="{% static 'plugins/metismenu/js/metisMenu.min.js' %}"></script>
+	<script src="{% static 'plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+	<script src="{% static 'plugins/chartjs/js/Chart.min.js' %}"></script>
+	<script src="{% static 'plugins/vectormap/jquery-jvectormap-2.0.2.min.js' %}"></script>
+	<script src="{% static 'plugins/vectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+	<script src="{% static 'plugins/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
+	<script src="{% static 'plugins/sparkline-charts/jquery.sparkline.min.js' %}"></script>
+	<script src="{% static 'plugins/jquery-knob/excanvas.js' %}"></script>
+	<script src="{% static 'plugins/jquery-knob/jquery.knob.js' %}"></script>
+	<script>
+		$(function() {
+			$(".knob").knob();
+		});
+	</script>
+	<script src="{% static 'js/index.js' %}"></script>
+	<!-- app JS -->
+	<script src="{% static 'js/app.js' %}"></script> 
+
+
+
 </body>
 
 </html>

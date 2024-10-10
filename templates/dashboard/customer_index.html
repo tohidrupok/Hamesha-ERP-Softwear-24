@@ -1,4 +1,5 @@
 {% load crispy_forms_tags %}
+<br><br><hr>
 <div class="container">
     <div class="row mt-4">
         <div class="col-12">
@@ -73,10 +74,13 @@
                                 <td>{{ order.customer }}</td>
                             </tr>
                         {% endfor %}
-                    </tbody>
+                    </tbody> 
+                    
                 </table>
+                <hr><hr>
             {% else %}
-                <p>No orders found for this shop.</p>
+            <p class="animated-text" style="animation: fadeIn 2s ease-in-out;">আপনার অর্ডার দেওয়ার জন্য একটি দোকান বেছে নিন</p>
+
             {% endif %}
         </div>
     </div>
@@ -148,5 +152,15 @@
                 areaDropdown.innerHTML = '<option value="">Select Area</option>';
             }
         });
-    });
+    }); 
+
+
+    
 </script>
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    </style>
+    
