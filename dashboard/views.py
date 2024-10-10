@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .decorators import auth_users, allowed_users
 # Create your views here.
+from django.http import JsonResponse
 
 
 @login_required(login_url='user-login')
@@ -68,7 +69,7 @@ def index(request):
         if form.is_valid() and selected_shop:
             obj = form.save(commit=False)
             obj.customer = request.user
-            obj.shop = selected_shop  
+            obj.shop = selected_shop  # Assign the selected shop to the order
             obj.save()
             return redirect('dashboard-index')
 
@@ -91,7 +92,7 @@ def index(request):
 
 
 
-from django.http import JsonResponse
+
 
 def get_districts(request):
     zone_name = request.GET.get('zone_name')
